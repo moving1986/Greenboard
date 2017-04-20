@@ -350,5 +350,24 @@ function get_password($email)
 
 		return $arr;
 
-}		
+}
 
+	function get_razdel() {
+		$sql = "SELECT id,name FROM".PREF."razd";
+		$result = mysql_query($sql);
+
+		return get_result($result);
+	}
+	function get_result($result) {
+		if(!$result) {
+			exit(mysql_error());
+		}
+		if(mysql_num($result)== 0) {
+			return FALSE;
+		}
+		$row = array();
+		for($i = 0; mysql_num_rows($result) > $i; $i++) {
+			$row[] = mysql_fetch_array($result, MYSQL_ASSOC);
+		}
+		return $row;
+	}

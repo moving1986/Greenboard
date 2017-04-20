@@ -9,7 +9,7 @@ require_once "functions.php";
 db(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
 
 // $catigories = 
-// $razd = 
+//$razd = get_razdel();
 $user = check_user();
 
 if ($user) {
