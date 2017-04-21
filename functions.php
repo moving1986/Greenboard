@@ -205,53 +205,53 @@ function logout() {
 }
 
 function check_user() {
-	
+
 	if(isset($_SESSION['sess'])) {
 		$sess = $_SESSION['sess'];
-		
+
 		$sql = "SELECT user_id,name,id_role
 				FROM ".PREF."users
 				WHERE sess='$sess'";
 		$result = mysql_query($sql);
-		
+
 		if(!$result || mysql_num_rows($result) < 1) {
 			return FALSE;
 		}
-		
-		return mysql_fetch_assoc($result);		
+
+		return mysql_fetch_assoc($result);
 	}
 	elseif(isset($_COOKIE['login']) && isset($_COOKIE['password'])) {
 		$login = $_COOKIE['login'];
 		$password = $_COOKIE['password'];
-		
+
 		$sql = "SELECT user_id,name,id_role
 				FROM ".PREF."users
 				WHERE login='$login'
 				AND password='$password'
 				AND confirm = '1'";
 		$result2 = mysql_query($sql);
-		
+
 		if(!$result2 || mysql_num_rows($result2) < 1) {
 			return FALSE;
 		}
-		
+
 		$sess = md5(microtime());
-		
+
 		$sql_update = "UPDATE ".PREF."users SET sess='$sess' WHERE login='%s'";
 		$sql_update = sprintf($sql_update,mysql_real_escape_string($login));
-	
+
 		if(!mysql_query($sql_update)) {
 			return "Ошибка авторизации пользователя";
 		}
-		
-		$_SESSION['sess'] = $sess;	
-		
-		return mysql_fetch_assoc($result);		
+
+		$_SESSION['sess'] = $sess;
+
+		//return mysql_fetch_assoc($result);
 	}
 	else {
 		return FALSE;
 	}
-	
+
 }
 
 function get_password($email)
@@ -353,7 +353,7 @@ function get_password($email)
 }
 
 	function get_razdel() {
-		$sql = "SELECT id,name FROM".PREF."razd";
+		$sql = "SELECT id,name FROM ".PREF."razd";
 		$result = mysql_query($sql);
 
 		return get_result($result);
@@ -362,7 +362,7 @@ function get_password($email)
 		if(!$result) {
 			exit(mysql_error());
 		}
-		if(mysql_num($result)== 0) {
+		if(mysql_num_rows($result)== 0) {
 			return FALSE;
 		}
 		$row = array();
@@ -370,4 +370,29 @@ function get_password($email)
 			$row[] = mysql_fetch_array($result, MYSQL_ASSOC);
 		}
 		return $row;
+	}
+	function get_categories()
+	{
+		$sql = "SELECT id,name,parent_id FROM " . PREF . "categories";
+		$result = mysql_query($sql);
+		print_r($result);
+		if (!$result) {
+			exit(mysql_errno());
+		}
+
+		if (mysql_num_rows($result) == 0) {
+			return FALSE;
+		}
+
+		$categories = array();
+
+		for ($i = 0; mysql_num_rows($result) > $i; $i++) {
+			$row = mysql_fetch_array($result, MYSQL_ASSOC);
+
+			if (!$row['parent_id']) {
+				$categories[$row['id']][] = $row['name'];
+			} else {
+				$categories[$row['parent_id']]['next'][$row['id']] = $row['name'];
+			}
+		}
 	}
