@@ -373,11 +373,11 @@ function get_password($email)
 	}
 	function get_categories()
 	{
-		$sql = "SELECT id,name,parent_id FROM " . PREF . "categories";
+		$sql = "SELECT * FROM ".PREF."categories";
 		$result = mysql_query($sql);
-		print_r($result);
+
 		if (!$result) {
-			exit(mysql_errno());
+			exit(mysql_error());
 		}
 
 		if (mysql_num_rows($result) == 0) {
@@ -388,11 +388,33 @@ function get_password($email)
 
 		for ($i = 0; mysql_num_rows($result) > $i; $i++) {
 			$row = mysql_fetch_array($result, MYSQL_ASSOC);
-
 			if (!$row['parent_id']) {
 				$categories[$row['id']][] = $row['name'];
 			} else {
 				$categories[$row['parent_id']]['next'][$row['id']] = $row['name'];
 			}
+		} return $categories;
+	}
+	function get_img() {
+		$width = 160;
+		$height = 80;
+
+		$r = mt_rand(133,255);
+		$g = mt_rand(133,255);
+		$b = mt_rand(133,255);
+
+		$im = imagecreatetruecolor($width,$height);
+		$background = imagecolorallocate($im,$r,$g,$b);
+		imagefilledrectangle($im, 0,0,$width,$height,$background);
+		$black = imagecolorallocate($im,7,7,7);
+		for($h = mt_rand(1,10);$h < $height; $h = $h + mt_rand(1,10)) {
+			for($v = mt_rand(1,30);$v < $width; $v = $v + mt_rand(1,30)) {
+
+				imagesetpixel($im,$v,$h,$black);
+			}
 		}
+
+		header("Content-Type: image/png");
+		imagepng($im);
+		imagedestroy($im);
 	}
