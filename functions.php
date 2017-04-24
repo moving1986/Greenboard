@@ -414,7 +414,106 @@ function get_password($email)
 			}
 		}
 
+		$str = generate_str();
+		$_SESSION['str_caap'] = $str;
+		$fonts_p = "fonts/";
+
+		$d = opendir($fonts_p);
+		while(FALSE !=($file = readdir($d))) {
+			if($file == "." || $file == "..") {
+				continue;
+			}
+			$fonts[] = $file;
+		}
+		$x =20;
+		$color = imagecolorallocate($im,7,7,7);
+	 	for($i = 0; $i < strlen($str); $i++){
+
+			$n = mt_rand(0,count($fonts) -1);
+			$font = $fonts_p.$fonts[$n];
+			$size = mt_rand(15,30);
+			$angle = mt_rand(-30,30);
+			$y = mt_rand(40,45);
+
+			imagettftext($im, $size, $angle, $x,$y,$color, $font,$str[$i]);
+			$x = $x + $size - 3;
+		}
+		for($c = 0; $c < 5; $c++) {
+			$x1 = mt_rand(0,intval($width*0.1));
+			$x2 = mt_rand(intval($width*0.8),$width);
+
+			$y1 = mt_rand(0,intval($height*0.6));
+			$y2 = mt_rand(intval($height*0.3),$height);
+			imageline($im, $x1,$y1,$x2,$y2,$black);
+		}
+
+
 		header("Content-Type: image/png");
 		imagepng($im);
 		imagedestroy($im);
+	}
+
+	function generate_str() {
+		$str = "23456789absdegikpqsvxyz";
+		$strLenght = strlen($str) - 1;
+		$str_g = "";
+		for($i = 0; $i<5; $i++) {
+			$x = mt_rand(0,$strLenght);
+			if ($i !== 0) {
+				if($str_g[strlen($str_g) - 1] == $str[$x]) {
+					$i--;
+					continue;
+				}
+			}
+			$str_g .=$str[$x];
+		}
+		return $str_g;
+	}
+
+	function add_mess($post,$user_id) {
+		$title = clear_str($post['title']);
+		$text = $post['text'];
+		$id_categories = (int) ($post['id_categories']);
+		$id_razd = (int) ($post['id_razd']);
+		$price = (int) ($post['price']);
+		$town = clear_str($post['town']);
+		$date = time();
+		$a_time = (int) ($post['time']);
+		$time_over = $date + ($a_time*(60*60*24));
+
+		$msg = '';
+
+		if(empty($_SESSION['str_cap']) || $_SESSION['str_cap'] !== $post['capcha']) {
+				$_SESSION[p][title] = $title;
+				$_SESSION[p][text] = $text;
+				$_SESSION[p][town] = $town;
+				$_SESSION[p][price] = $price;
+
+			return "Ошибка ввода капчи!";
+		}
+		unset($_SESSION['str_cap']);
+		if (empty($title)) {
+			$msg = "Введите заголовок объявления <br />";
+		}
+		if (empty($text)) {
+			$msg = "Введите заголовок объявления";
+		}
+		if (!empty($msg)) {
+			$_SESSION[p][title] = $title;
+			$_SESSION[p][text] = $text;
+			$_SESSION[p][town] = $town;
+			$_SESSION[p][price] = $price;
+			echo $msg;
+		}
+		if(!emty($_FILES['img']['tpm_name'])) {
+			if(!empty(!$_FILES['img']['error'])) {
+				$_SESSION[p][title] = $title;
+				$_SESSION[p][text] = $text;
+				$_SESSION[p][town] = $town;
+				$_SESSION[p][price] = $price;
+				return "Error Upload files";
+			}
+			$img_typs = array('jpeg' => "image/jpeg","jpeg-e");
+		}
+
 	}
