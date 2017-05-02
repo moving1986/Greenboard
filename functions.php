@@ -395,125 +395,381 @@ function get_password($email)
 			}
 		} return $categories;
 	}
-	function get_img() {
-		$width = 160;
-		$height = 80;
+function get_img() {
 
-		$r = mt_rand(133,255);
-		$g = mt_rand(133,255);
-		$b = mt_rand(133,255);
+	$width = 160;
+	$height = 80;
 
-		$im = imagecreatetruecolor($width,$height);
-		$background = imagecolorallocate($im,$r,$g,$b);
-		imagefilledrectangle($im, 0,0,$width,$height,$background);
-		$black = imagecolorallocate($im,7,7,7);
-		for($h = mt_rand(1,10);$h < $height; $h = $h + mt_rand(1,10)) {
-			for($v = mt_rand(1,30);$v < $width; $v = $v + mt_rand(1,30)) {
+	$r = mt_rand(133,255);
+	$g = mt_rand(133,255);
+	$b = mt_rand(133,255);
 
-				imagesetpixel($im,$v,$h,$black);
-			}
+	$im = imagecreatetruecolor($width,$height);
+
+	$background = imagecolorallocate($im,$r,$g,$b);
+
+	imagefilledrectangle($im,0,0,$width,$height,$background);
+
+	$black = imagecolorallocate($im,7,7,7);
+
+	for($h = mt_rand(1,10);$h < $height; $h = $h + mt_rand(1,10)) {
+		for($v = mt_rand(1,30);$v < $width; $v = $v + mt_rand(1,30)) {
+
+			imagesetpixel($im,$v,$h,$black);
 		}
+	}
 
-		$str = generate_str();
-		$_SESSION['str_caap'] = $str;
-		$fonts_p = "fonts/";
+	$str = generate_str();
+	$_SESSION['str_cap'] = $str;
 
-		$d = opendir($fonts_p);
-		while(FALSE !=($file = readdir($d))) {
-			if($file == "." || $file == "..") {
+	$fonts_p = "fonts/";
+
+	$d = opendir($fonts_p);
+	while(FALSE !=($file = readdir($d))) {
+		if($file == "." || $file == "..") {
+			continue;
+		}
+		$fonts[] = $file;
+	}
+
+	$x = 20;
+	$color = imagecolorallocate($im,7,7,7);
+	for($i = 0;$i < strlen($str);$i++) {
+
+		$n = mt_rand(0,count($fonts)-1);
+		$font = $fonts_p.$fonts[$n];
+
+		$size = mt_rand(15,35);
+		$angle = mt_rand(-30,30);
+		$y = mt_rand(40,45);
+
+		imagettftext($im,$size,$angle,$x,$y,$color,$font,$str[$i]);
+		$x = $x + $size - 5;
+	}
+
+	for($c = 0; $c < 5; $c++) {
+
+		$x1 = mt_rand(0,intval($width*0.1));
+		$x2 = mt_rand(intval($width*0.8),$width);
+
+		$y1 = mt_rand(0,intval($height*0.6));
+		$y2 = mt_rand(intval($height*0.3),$height);
+
+		imageline($im,$x1,$y1,$x2,$y2,$black);
+	}
+
+
+
+	header("Content-Type: image/png");
+	imagepng($im);
+	imagedestroy($im);
+}
+
+
+function generate_str() {
+
+	$str = "23456789abcdegikpqsvxyz";
+	$strLength = strlen($str) - 1;
+
+	$str_g = "";
+
+	for($i = 0; $i < 5; $i++) {
+
+		$x = mt_rand(0,$strLength);
+
+		if($i !== 0) {
+			if($str_g[strlen($str_g) - 1] == $str[$x]) {
+				$i--;
 				continue;
 			}
-			$fonts[] = $file;
-		}
-		$x =20;
-		$color = imagecolorallocate($im,7,7,7);
-	 	for($i = 0; $i < strlen($str); $i++){
-
-			$n = mt_rand(0,count($fonts) -1);
-			$font = $fonts_p.$fonts[$n];
-			$size = mt_rand(15,30);
-			$angle = mt_rand(-30,30);
-			$y = mt_rand(40,45);
-
-			imagettftext($im, $size, $angle, $x,$y,$color, $font,$str[$i]);
-			$x = $x + $size - 3;
-		}
-		for($c = 0; $c < 5; $c++) {
-			$x1 = mt_rand(0,intval($width*0.1));
-			$x2 = mt_rand(intval($width*0.8),$width);
-
-			$y1 = mt_rand(0,intval($height*0.6));
-			$y2 = mt_rand(intval($height*0.3),$height);
-			imageline($im, $x1,$y1,$x2,$y2,$black);
 		}
 
+		$str_g .= $str[$x];
 
-		header("Content-Type: image/png");
-		imagepng($im);
-		imagedestroy($im);
 	}
 
-	function generate_str() {
-		$str = "23456789absdegikpqsvxyz";
-		$strLenght = strlen($str) - 1;
-		$str_g = "";
-		for($i = 0; $i<5; $i++) {
-			$x = mt_rand(0,$strLenght);
-			if ($i !== 0) {
-				if($str_g[strlen($str_g) - 1] == $str[$x]) {
-					$i--;
-					continue;
-				}
+	return $str_g;
+
+}
+
+function add_mess($post,$user_id) {
+	$title = clear_str($post['title']);
+	$text = $post['text'];
+	$id_categories =(int)($post['id_categories']);
+	$id_razd =(int)($post['id_razd']);
+	$price =(int)($post['price']);
+	$town = clear_str($post['town']);
+	$date = time();
+	$a_time = (int)($post['time']);
+	$time_over = $date + ($a_time*(60*60*24));
+
+	$msg = '';
+
+	if(empty($_SESSION['str_cap']) || $_SESSION['str_cap'] !== $post['capcha']) {
+		$_SESSION['p']['title'] = $title;
+		$_SESSION['p']['text'] = $text;
+		$_SESSION['p']['town'] = $town;
+		$_SESSION['p']['price'] = $price;
+		$msg = "Ошибка ввода капчи";
+
+	}
+
+	unset($_SESSION['str_cap']);
+
+	if(empty($title)) {
+		$msg .= "Введите заголовок";
+	}
+	if(empty($text)) {
+		$msg .= "Введите текст";
+	}
+
+	if(!empty($msg)) {
+		$_SESSION['p']['title'] = $title;
+		$_SESSION['p']['text'] = $text;
+		$_SESSION['p']['town'] = $town;
+		$_SESSION['p']['price'] = $price;
+		echo $msg;
+
+	}
+
+	$img_types = array('jpeg'=>"image/jpeg",
+		"pjpeg"=>"image/pjpeg",
+		'png' => "image/png",
+		'x-png' => "image/x-png",
+		'gif' => "image/gif",
+	);
+
+	if(!empty($_FILES['img']['tmp_name'])) {
+
+		if(!empty($_FILES['img']['error'])) {
+			$_SESSION['p']['title'] = $title;
+			$_SESSION['p']['text'] = $text;
+			$_SESSION['p']['town'] = $town;
+			$_SESSION['p']['price'] = $price;
+			return "Erorr upload image";
+		}
+
+		$type_img = array_search($_FILES['img']['type'],$img_types);
+		if(!$type_img) {
+			$_SESSION['p']['title'] = $title;
+			$_SESSION['p']['text'] = $text;
+			$_SESSION['p']['town'] = $town;
+			$_SESSION['p']['price'] = $price;
+			return "Wrong type img";
+		}
+
+		if($_FILES['img']['size'] > (2*1024*1024)) {
+			$_SESSION['p']['title'] = $title;
+			$_SESSION['p']['text'] = $text;
+			$_SESSION['p']['town'] = $town;
+			$_SESSION['p']['price'] = $price;
+			return "Very big img";
+		}
+
+		if(!move_uploaded_file($_FILES['img']['tmp_name'],FILES.$_FILES['img']['name'])) {
+			$_SESSION['p']['title'] = $title;
+			$_SESSION['p']['text'] = $text;
+			$_SESSION['p']['town'] = $town;
+			$_SESSION['p']['price'] = $price;
+			return "Error copy image";
+		}
+
+
+		if(!img_resize($_FILES['img']['name'],$type_img)) {
+			$_SESSION['p']['title'] = $title;
+			$_SESSION['p']['text'] = $text;
+			$_SESSION['p']['town'] = $town;
+			$_SESSION['p']['price'] = $price;
+			return "Error to resize image";
+		}
+
+
+		$img = $_FILES['img']['name'];
+
+		$sql = "INSERT INTO ".PREF."post(
+											title,text,img,date,id_user,id_categories,id_razd,town,time_over,price
+											)
+											VALUES (
+												'$title','$text','$img','$date','$user_id','$id_categories','$id_razd','$town','$time_over','$price'
+											)
+
+										";
+
+
+		$result = mysql_query($sql);
+
+		if(!$result) {
+			$_SESSION['p']['title'] = $title;
+			$_SESSION['p']['text'] = $text;
+			$_SESSION['p']['town'] = $town;
+			$_SESSION['p']['price'] = $price;
+			return mysql_error();
+		}
+
+	}
+	else {
+		$_SESSION['p']['title'] = $title;
+		$_SESSION['p']['text'] = $text;
+		$_SESSION['p']['town'] = $town;
+		$_SESSION['p']['price'] = $price;
+		return "Добавьте изображение";
+	}
+
+	if(!empty($_FILES['mini'])) {
+		$id_mess = mysql_insert_id();
+
+		$img_s = "";
+
+		for($i = 0; $i < count($_FILES['mini']['tmp_name']); $i++) {
+			if(empty($_FILES['mini']['tmp_name'][$i])) continue;
+
+			if(!empty($_FILES['mini']['error'][$i])) {
+				$_SESSION['p']['title'] = $title;
+				$_SESSION['p']['text'] = $text;
+				$_SESSION['p']['town'] = $town;
+				$_SESSION['p']['price'] = $price;
+				$msg .= "Erorr upload image";
+				continue;
 			}
-			$str_g .=$str[$x];
-		}
-		return $str_g;
-	}
 
-	function add_mess($post,$user_id) {
-		$title = clear_str($post['title']);
-		$text = $post['text'];
-		$id_categories = (int) ($post['id_categories']);
-		$id_razd = (int) ($post['id_razd']);
-		$price = (int) ($post['price']);
-		$town = clear_str($post['town']);
-		$date = time();
-		$a_time = (int) ($post['time']);
-		$time_over = $date + ($a_time*(60*60*24));
-
-		$msg = '';
-
-		if(empty($_SESSION['str_cap']) || $_SESSION['str_cap'] !== $post['capcha']) {
-				$_SESSION[p][title] = $title;
-				$_SESSION[p][text] = $text;
-				$_SESSION[p][town] = $town;
-				$_SESSION[p][price] = $price;
-
-			return "Ошибка ввода капчи!";
-		}
-		unset($_SESSION['str_cap']);
-		if (empty($title)) {
-			$msg = "Введите заголовок объявления <br />";
-		}
-		if (empty($text)) {
-			$msg = "Введите заголовок объявления";
-		}
-		if (!empty($msg)) {
-			$_SESSION[p][title] = $title;
-			$_SESSION[p][text] = $text;
-			$_SESSION[p][town] = $town;
-			$_SESSION[p][price] = $price;
-			echo $msg;
-		}
-		if(!emty($_FILES['img']['tpm_name'])) {
-			if(!empty(!$_FILES['img']['error'])) {
-				$_SESSION[p][title] = $title;
-				$_SESSION[p][text] = $text;
-				$_SESSION[p][town] = $town;
-				$_SESSION[p][price] = $price;
-				return "Error Upload files";
+			$type_img = array_search($_FILES['mini']['type'][$i],$img_types);
+			if(!$type_img) {
+				$_SESSION['p']['title'] = $title;
+				$_SESSION['p']['text'] = $text;
+				$_SESSION['p']['town'] = $town;
+				$_SESSION['p']['price'] = $price;
+				$msg .="Wrong type img";
+				continue;
 			}
-			$img_typs = array('jpeg' => "image/jpeg","jpeg-e");
-		}
 
+			if($_FILES['mini']['size'][$i] > (2*1024*1024)) {
+				$_SESSION['p']['title'] = $title;
+				$_SESSION['p']['text'] = $text;
+				$_SESSION['p']['town'] = $town;
+				$_SESSION['p']['price'] = $price;
+				$msg .="Very big img";
+				continue;
+			}
+
+			$name_img = $id_mess."_".$i;
+			$rash = substr($_FILES['mini']['name'][$i],strripos($_FILES['mini']['name'][$i],"."));
+			$name_img .=$rash;
+
+			if(!move_uploaded_file($_FILES['mini']['tmp_name'][$i],FILES.$name_img)) {
+				$_SESSION['p']['title'] = $title;
+				$_SESSION['p']['text'] = $text;
+				$_SESSION['p']['town'] = $town;
+				$_SESSION['p']['price'] = $price;
+				$msg .= "Error copy image";
+				continue;
+			}
+
+
+			if(!img_resize($name_img,$type_img)) {
+				$_SESSION['p']['title'] = $title;
+				$_SESSION['p']['text'] = $text;
+				$_SESSION['p']['town'] = $town;
+				$_SESSION['p']['price'] = $price;
+				return "Error to resize image";
+			}
+
+			$img_s .= $name_img."|";
+		}
+		$img_s  = rtrim($img_s,"|");
+
+		$sql = "UPDATE ".PREF."post SET img_s = '$img_s' WHERE id = '$id_mess'";
+
+		$result2 = mysql_query($sql);
+		if(mysql_affected_rows()) {
+			if(!empty($msg)) {
+				echo $msg;
+			}
+			return TRUE;
+		}
 	}
+	else {
+		return TRUE;
+	}
+}
+
+function img_resize($file_name,$type) {
+	switch($type) {
+
+		case 'jpeg':
+		case 'pjpeg':
+			$img_id = imagecreatefromjpeg(FILES.$file_name);
+			break;
+
+		case 'png':
+		case 'x-png':
+			$img_id = imagecreatefrompng(FILES.$file_name);
+			break;
+
+		case 'gif':
+			$img_id = imagecreatefromgif(FILES.$file_name);
+			break;
+	}
+
+	$img_width = imageSX($img_id);
+	$img_height = imageSY($img_id);
+
+
+	$k = round($img_width/IMG_WIDTH,2);
+
+	$img_mini_width = round($img_width/$k);
+	$img_mini_height = round($img_height/$k);
+
+	$img_dest_id = imagecreatetruecolor($img_mini_width,$img_mini_height);
+
+
+	$result = imagecopyresampled($img_dest_id,
+		$img_id,
+		0,
+		0,
+		0,
+		0,
+		$img_mini_width,
+		$img_mini_height,
+		$img_width,
+		$img_height
+	);
+	$img = imagejpeg($img_dest_id,MINI.$file_name,100);
+
+	imagedestroy($img_id);
+	imagedestroy($img_dest_id);
+
+	if($img) {
+		return TRUE;
+	}
+	else {
+		return FALSE;
+	}
+}
+
+function get_p_mess($user) {
+
+	$sql = "SELECT
+					".PREF."post.id,
+					".PREF."post.title,
+					img,
+					text,
+					date,
+					town,
+					price,
+					".PREF."post.confirm,
+					is_actual,
+					time_over,
+					".PREF."users.name AS uname,
+					".PREF."users.email,
+					".PREF."categories.name AS cat,
+					".PREF."razd.name AS razd
+				FROM ".PREF."post
+				LEFT JOIN ".PREF."users ON ".PREF."users.user_id = '$user'
+				LEFT JOIN ".PREF."categories ON ".PREF."categories.id = ".PREF."post.id_categories
+				LEFT JOIN ".PREF."razd ON ".PREF."razd.id = ".PREF."post.id_razd
+				WHERE ".PREF."post.id_user = '$user'
+				ORDER by date DESC
+						";
+	$result = mysql_query($sql);
+	return get_result($result);
+}
