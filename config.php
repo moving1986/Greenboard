@@ -8,8 +8,9 @@ define("PREF",'mes_');
 define("SITE_NAME",'http://localhost/board');
 define("TEMPLATE",'template/default/');
 define("ACTIONS",'actions/');
-define("FILES",'files/mini/');
-define("IMG_WIDTH",400);
+define("FILES",'files/');
+define("MINI",'files/mini/');
+define("IMG_WIDTH",220);
 
 define("PERPAGE",4);
 define("SITE_NAME_HEADER",'Green board - доска бесптаных объявлений');
