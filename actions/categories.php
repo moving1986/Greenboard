@@ -10,7 +10,7 @@ if($_GET['page']) {
 } else {
     $page = 1;
 }
-$count_mess = count_mess($id_r);
+$count_mess = count_mess($id_r,$id_cat);
 if($count_mess) {
     $text = get_mess($id_r,FALSE,$page,PERPAGE);
     if (is_array($text)) {
