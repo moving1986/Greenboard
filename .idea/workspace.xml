@@ -6,56 +6,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="91fad2d7-1a75-42cc-8fed-ff24702179eb" name="Default" comment="Почти готов 7 урок">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="66724431-9a9b-4d94-8259-1aea13bca936" name="Rejected commit: Default" comment="Rejected commit: Default" />
     <list id="095f8f77-b36a-46cc-87ad-320a58919465" name="Rejected commit: Rejected commit: Default" comment="Rejected commit: Default" />
     <list id="f0a44096-297c-40c7-ba31-3f28fde9b621" name="Rejected commit: Rejected commit: Rejected commit: Default" comment="Rejected commit: Default" />
-    <list id="b4e3cf73-8006-42f3-808b-ef718dc4e424" name="Rejected commit: Default (2)" comment="Почти готов 7 урок">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/src/bg_left_top.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/src/ico-sagen.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/src/ico_exchange.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/src/ico_korma.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/src/ico_oborud.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/src/ico_prod.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/src/ico_semena.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/src/ico_service.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/src/ico_udobr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/src/logo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/src/menu_item.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/src/tovar.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/src/tovar1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/src/up_left_m.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/src/v_menu.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/actions/edit_mess.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/actions/full_search.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/actions/p_mess.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/actions/search.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/actions/view_mess.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/add_mess.tpl.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/edit_mess.tpl.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/error.tpl.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/footer.tpl.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/full_search.tpl.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/header.tpl.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/login.tpl.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/main.tpl.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/menu.tpl.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/p_mess.tpl.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/registration.tpl.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/returnpass.tpl.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/search.tpl.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/sitebar.tpl.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/style.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/template/default/view_mess.tpl.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actions/add_mess.php" afterPath="$PROJECT_DIR$/actions/add_mess.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/actions/main.php" afterPath="$PROJECT_DIR$/actions/main.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/capcha.php" afterPath="$PROJECT_DIR$/capcha.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.php" afterPath="$PROJECT_DIR$/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-    </list>
+    <list id="b4e3cf73-8006-42f3-808b-ef718dc4e424" name="Rejected commit: Default (2)" comment="Почти готов 7 урок" />
     <ignored path="board.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -136,8 +92,8 @@
       <file leaf-file-name="main.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/actions/main.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="11" selection-end-column="1" />
+            <state vertical-scroll-proportion="-2.6153846">
+              <caret line="4" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -148,16 +104,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="37" column="3" selection-start-line="32" selection-start-column="0" selection-end-line="37" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -186,11 +132,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="menu.tpl.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="menu.tpl.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/template/default/menu.tpl.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5654397">
+            <state vertical-scroll-proportion="-21.26923">
               <caret line="134" column="73" selection-start-line="134" selection-start-column="73" selection-end-line="134" selection-end-column="73" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="categories.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/actions/categories.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6257669">
+              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -242,6 +198,7 @@
         <option value="$PROJECT_DIR$/template/default/search.tpl.php" />
         <option value="$PROJECT_DIR$/template/default/full_serch.tpl.php" />
         <option value="$PROJECT_DIR$/template/default/menu.tpl.php" />
+        <option value="$PROJECT_DIR$/actions/categories.php" />
       </list>
     </option>
   </component>
@@ -505,14 +462,20 @@
       <option name="project" value="LOCAL" />
       <updated>1496284490751</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Начало 7 урок">
+      <created>1496296495976</created>
+      <option name="number" value="00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1496296495976</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16458334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16458334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32848838" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -550,7 +513,8 @@
     <MESSAGE value="All good" />
     <MESSAGE value="Rejected commit: Default" />
     <MESSAGE value="Почти готов 7 урок" />
-    <option name="LAST_COMMIT_MESSAGE" value="Почти готов 7 урок" />
+    <MESSAGE value="Начало 7 урок" />
+    <option name="LAST_COMMIT_MESSAGE" value="Начало 7 урок" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -559,13 +523,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="16" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/functions.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -951,14 +908,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/actions/main.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="11" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/template/default/full_search.tpl.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -994,8 +943,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/template/default/menu.tpl.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5654397">
+        <state vertical-scroll-proportion="-21.26923">
           <caret line="134" column="73" selection-start-line="134" selection-start-column="73" selection-end-line="134" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/actions/main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.6153846">
+          <caret line="4" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/actions/categories.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6257669">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding />
         </state>
       </provider>
