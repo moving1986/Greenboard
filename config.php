@@ -12,5 +12,6 @@ define("FILES",'files/');
 define("MINI",'files/mini/');
 define("IMG_WIDTH",220);
 
-define("PERPAGE",4);
+define("PERPAGE",2);
+define("C_LINKS",3);
 define("SITE_NAME_HEADER",'Green board - доска бесптаных объявлений');

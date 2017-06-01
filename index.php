@@ -8,10 +8,7 @@ require_once "functions.php";
 
 db(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
 
-$catigories = get_categories();
-if(isset($catigories)) {
-	echo "Он есть";
-} else {echo "Его нет";}
+$categories = get_categories();
 $razd = get_razdel();
 $user = check_user();
 
