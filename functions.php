@@ -1121,7 +1121,7 @@ function get_mess($id_r = FALSE,$id_c = FALSE,$page,$perpage) {
 	if($id_r) {
 		$sql .= " AND id_razd = '$id_r'";
 	}
-	elseif($id_c) {
+	if($id_c) {
 		$sql .= " AND id_categories = '$id_c'";
 	}
 

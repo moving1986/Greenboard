@@ -104,7 +104,7 @@
                  <ul>
                      <li><a href="#" title="">Услуги</a>
                      <ul class="second-nav">
-                         <li><a href="#" title="">Перевозка грузов</a></li>
+                         <li><a href="?action=categories&1" title="">Перевозка грузов</a></li>
                          <li><a href="#" title="">Ремонтные работы</a></li>
                          <li><a href="#" title="">Строительство</a></li>
                          <li><a href="#" title="">Сервис быт. техники</a></li>
